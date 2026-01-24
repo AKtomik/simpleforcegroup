@@ -1,17 +1,17 @@
-package com.example.voicechatplugin;
+package io.github.aktomik.voicechatdictator;
 
 import de.maxhenkel.voicechat.api.VoicechatApi;
 import de.maxhenkel.voicechat.api.VoicechatPlugin;
 import de.maxhenkel.voicechat.api.events.EventRegistration;
 
-public class ExampleVoicechatPlugin implements VoicechatPlugin {
+public class VoiceChatInteraction implements VoicechatPlugin {
 
     /**
      * @return the unique ID for this voice chat plugin
      */
     @Override
     public String getPluginId() {
-        return ExamplePlugin.PLUGIN_ID;
+        return VoicechatDictator.PLUGIN_ID;
     }
 
     /**

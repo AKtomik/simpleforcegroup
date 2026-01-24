@@ -1,4 +1,4 @@
-package com.example.voicechatplugin;
+package io.github.aktomik.voicechatdictator;
 
 import de.maxhenkel.voicechat.api.BukkitVoicechatService;
 import org.apache.logging.log4j.LogManager;
@@ -7,19 +7,19 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.annotation.Nullable;
 
-public final class ExamplePlugin extends JavaPlugin {
+public final class VoicechatDictator extends JavaPlugin {
 
-    public static final String PLUGIN_ID = "example_plugin";
+    public static final String PLUGIN_ID = "voicechat_dictator";
     public static final Logger LOGGER = LogManager.getLogger(PLUGIN_ID);
 
     @Nullable
-    private ExampleVoicechatPlugin voicechatPlugin;
+    private VoiceChatInteraction voicechatPlugin;
 
     @Override
     public void onEnable() {
         BukkitVoicechatService service = getServer().getServicesManager().load(BukkitVoicechatService.class);
         if (service != null) {
-            voicechatPlugin = new ExampleVoicechatPlugin();
+            voicechatPlugin = new VoiceChatInteraction();
             service.registerPlugin(voicechatPlugin);
             LOGGER.info("Successfully registered example plugin");
         } else {

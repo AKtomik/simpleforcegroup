@@ -1,9 +1,9 @@
-name: example_plugin
+name: voicechat-dictator
 version: ${version}
-main: com.example.voicechatplugin.ExamplePlugin
+main: io.github.aktomik.voicechatdictator.VoicechatDictator
 api-version: ${bukkit_api_version}
-prefix: example_plugin
-authors: [ "Example Author" ]
-description: A Simple Voice Chat API plugin example
+prefix: voicechat-dictator
+authors: [ "AKtomik" ]
+description: A Voice Chat API plugin to force players to a group
 website: https://example.com
 depend: [ voicechat ]
