@@ -52,13 +52,19 @@ public class DictateoutCommand extends BrigadierCommand {
 		.executes(exe));
 	}
 
-	Command<CommandSourceStack> exe = (ctx) -> {
+	Command<CommandSourceStack> exe = ctx -> {
 		final List<Player> players = BrigadierToolbox.resolvePlayers(ctx);
 		final CommandSender sender = ctx.getSource().getSender();
 
+		if (!cop.isAvailable())
+		{
+			sender.sendRichMessage("<red>cop dictator plugin not ready, something went wrong in init.");
+			return Command.SINGLE_SUCCESS;
+		}
+
 		for (Player player : players)
 		{
-			sender.sendRichMessage("kicked out <target> from their group.", Placeholder.parsed("target", player.getName()));
+			sender.sendRichMessage("kicked out <b><target></b> from their group.", Placeholder.parsed("target", player.getName()));
 			cop.removePlayerGroup(player);
 		}
 

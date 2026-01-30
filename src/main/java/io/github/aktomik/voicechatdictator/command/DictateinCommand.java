@@ -64,17 +64,22 @@ public class DictateinCommand extends BrigadierCommand {
 		final String groupName = ctx.getArgument("group", String.class);
 		final CommandSender sender = ctx.getSource().getSender();
 
+		if (!cop.isAvailable())
+		{
+			sender.sendRichMessage("<red>cop dictator plugin not ready, something went wrong in init.");
+			return Command.SINGLE_SUCCESS;
+		}
 
 		Group group = cop.getGroup(groupName);
 		if (group == null)
 		{
-			sender.sendRichMessage("group <group> does not exist.", Placeholder.parsed("group", groupName));
+			sender.sendRichMessage("<red>group <u><group></u> does not exist.", Placeholder.parsed("group", groupName));
 			return Command.SINGLE_SUCCESS;
 		}
 
 		for (Player player : players)
 		{
-			sender.sendRichMessage("added in <target> to the group <group>.", Placeholder.parsed("target", player.getName()), Placeholder.parsed("group", group.getName()));
+			sender.sendRichMessage("added in <b><target></b> to the group <u><group></u>.", Placeholder.parsed("target", player.getName()), Placeholder.parsed("group", group.getName()));
 			cop.addPlayerToGroup(player, group);
 		}
 
