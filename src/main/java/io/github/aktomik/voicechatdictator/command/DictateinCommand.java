@@ -55,7 +55,7 @@ public class DictateinCommand extends BrigadierCommand {
 		.executes(exe)));
 	}
 
-	Command<CommandSourceStack> exe = (ctx) -> {
+	Command<CommandSourceStack> exe = ctx -> {
 		final List<Player> players = BrigadierToolbox.resolvePlayers(ctx);
 		final String groupName = ctx.getArgument("group", String.class);
 		final CommandSender sender = ctx.getSource().getSender();
