@@ -1,6 +1,5 @@
 package io.github.aktomik.voicechatdictator;
 
-import de.maxhenkel.voicechat.api.BukkitVoicechatService;
 import io.github.aktomik.voicechatdictator.brigadier.BrigadierToolbox;
 import io.github.aktomik.voicechatdictator.command.HiCommand;
 import org.apache.logging.log4j.LogManager;
@@ -16,11 +15,11 @@ public final class VoicechatDictator extends JavaPlugin {
     public static final Logger LOGGER = LogManager.getLogger(PLUGIN_ID);
 
     @Nullable
-    private VoiceChatInteraction voicechatPlugin;
+    private VoicechatCop voicechatPlugin;
 
     @Override
     public void onEnable() {
-        voicechatPlugin = new VoiceChatInteraction(this);
+        voicechatPlugin = new VoicechatCop(this);
         BrigadierToolbox.loadCommands(this, List.of( new HiCommand(this, voicechatPlugin)));
     }
 
@@ -28,7 +27,7 @@ public final class VoicechatDictator extends JavaPlugin {
     public void onDisable() {
         if (voicechatPlugin != null) {
             getServer().getServicesManager().unregister(voicechatPlugin);
-            LOGGER.info("Successfully unregistered example plugin");
+            LOGGER.info("Successfully unregistered Voice Chat Dictator plugin");
         }
     }
 }

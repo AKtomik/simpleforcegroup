@@ -8,13 +8,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.List;
 import java.util.Objects;
 
-public class VoiceChatInteraction implements VoicechatPlugin {
+public class VoicechatCop implements VoicechatPlugin {
 
 
     private final JavaPlugin plugin;
     private VoicechatServerApi serverApi;
 
-    public VoiceChatInteraction(JavaPlugin plugin) {
+    public VoicechatCop(JavaPlugin plugin) {
         this.plugin = plugin;
         initializeApi();
     }

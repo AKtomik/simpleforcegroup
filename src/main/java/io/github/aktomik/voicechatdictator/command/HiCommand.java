@@ -2,7 +2,7 @@ package io.github.aktomik.voicechatdictator.command;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import io.github.aktomik.voicechatdictator.VoiceChatInteraction;
+import io.github.aktomik.voicechatdictator.VoicechatCop;
 import io.github.aktomik.voicechatdictator.brigadier.BrigadierCommand;
 import io.github.aktomik.voicechatdictator.brigadier.BrigadierToolbox;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
@@ -16,12 +16,12 @@ import java.util.List;
 
 public class HiCommand extends BrigadierCommand {
 
-	VoiceChatInteraction chat;
+	VoicechatCop chat;
 	JavaPlugin plugin;
-	public HiCommand(JavaPlugin plugin, VoiceChatInteraction voiceChatInteraction)
+	public HiCommand(JavaPlugin plugin, VoicechatCop voiceChatPlugin)
 	{
 		this.plugin = plugin;
-		chat = voiceChatInteraction;
+		chat = voiceChatPlugin;
 	}
 
 	@Override
