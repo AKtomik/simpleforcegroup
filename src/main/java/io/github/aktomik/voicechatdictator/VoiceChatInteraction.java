@@ -1,8 +1,8 @@
 package io.github.aktomik.voicechatdictator;
 
 import de.maxhenkel.voicechat.api.*;
-import de.maxhenkel.voicechat.api.events.EventRegistration;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
@@ -66,14 +66,14 @@ public class VoiceChatInteraction implements VoicechatPlugin {
         List<Group> groups = serverApi.getGroups().stream().filter(group -> Objects.equals(group.getName(), groupName)).toList();
         assert groups.isEmpty();
         Group group = groups.getFirst();
-        VoicechatConnection connection = serverApi.getConnectionOf(player.getUuid());
+        VoicechatConnection connection = serverApi.getConnectionOf(player.getUniqueId());
         assert connection != null;
         connection.setGroup(group);
     }
 
-    public void removePlayerGroup(Player player)
+    public void removePlayerGroup(org.bukkit.entity.Player player)
     {
-        VoicechatConnection connection = serverApi.getConnectionOf(player.getUuid());
+        VoicechatConnection connection = serverApi.getConnectionOf(player.getUniqueId());
 		assert connection != null;
 		connection.setGroup(null);
     }

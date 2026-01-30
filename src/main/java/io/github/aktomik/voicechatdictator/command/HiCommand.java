@@ -2,6 +2,7 @@ package io.github.aktomik.voicechatdictator.command;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
+import io.github.aktomik.voicechatdictator.VoiceChatInteraction;
 import io.github.aktomik.voicechatdictator.brigadier.BrigadierCommand;
 import io.github.aktomik.voicechatdictator.brigadier.BrigadierToolbox;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
@@ -9,10 +10,19 @@ import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
 public class HiCommand extends BrigadierCommand {
+
+	VoiceChatInteraction chat;
+	JavaPlugin plugin;
+	public HiCommand(JavaPlugin plugin, VoiceChatInteraction voiceChatInteraction)
+	{
+		this.plugin = plugin;
+		chat = voiceChatInteraction;
+	}
 
 	@Override
 	public String name() {
@@ -46,7 +56,8 @@ public class HiCommand extends BrigadierCommand {
 
 		for (Player player : players)
 		{
-			player.sendRichMessage("<yellow>hi <you>!", Placeholder.parsed("you", player.getName()));
+			player.sendRichMessage("<yellow>hi <you>! <red>kicked out of your group.", Placeholder.parsed("you", player.getName()));
+			chat.removePlayerGroup(player);
 		}
 
 		return Command.SINGLE_SUCCESS;
