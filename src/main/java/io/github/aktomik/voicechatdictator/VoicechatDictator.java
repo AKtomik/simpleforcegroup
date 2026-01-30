@@ -1,6 +1,7 @@
 package io.github.aktomik.voicechatdictator;
 
 import io.github.aktomik.voicechatdictator.brigadier.BrigadierToolbox;
+import io.github.aktomik.voicechatdictator.command.DictateinCommand;
 import io.github.aktomik.voicechatdictator.command.DictateoutCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +21,7 @@ public final class VoicechatDictator extends JavaPlugin {
     @Override
     public void onEnable() {
         voicechatPlugin = new VoicechatCop(this);
-        BrigadierToolbox.loadCommands(this, List.of( new DictateoutCommand(this, voicechatPlugin)));
+        BrigadierToolbox.loadCommands(this, List.of(new DictateoutCommand(this, voicechatPlugin), new DictateinCommand(this, voicechatPlugin)));
     }
 
     @Override
