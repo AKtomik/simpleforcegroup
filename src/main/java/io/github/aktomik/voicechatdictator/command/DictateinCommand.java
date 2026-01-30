@@ -71,7 +71,7 @@ public class DictateinCommand extends BrigadierCommand {
 		for (Player player : players)
 		{
 			sender.sendRichMessage("added in <target> to the group <group>.", Placeholder.parsed("target", player.getName()), Placeholder.parsed("group", group.getName()));
-			cop.removePlayerGroup(player);
+			cop.addPlayerToGroup(player, group);
 		}
 
 		return Command.SINGLE_SUCCESS;
