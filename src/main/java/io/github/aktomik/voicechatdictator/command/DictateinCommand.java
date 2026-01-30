@@ -52,6 +52,10 @@ public class DictateinCommand extends BrigadierCommand {
 		return base()
 		.then(Commands.argument("players", ArgumentTypes.players())
 		.then(Commands.argument("group", StringArgumentType.word())
+		.suggests((ctx, builder) -> {
+			cop.getGroups().forEach(group -> builder.suggest(group.getName()));
+			return builder.buildFuture();
+		})
 		.executes(exe)));
 	}
 

@@ -68,6 +68,11 @@ public class VoicechatCop implements VoicechatPlugin {
         return groups.getFirst();
     }
 
+    public List<Group> getGroups()
+    {
+        return serverApi.getGroups().stream().toList();
+    }
+
     public void addPlayerToGroup(Player player, Group group)
     {
         VoicechatConnection connection = serverApi.getConnectionOf(player.getUniqueId());
