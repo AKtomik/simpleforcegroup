@@ -12,18 +12,21 @@ public final class VoicechatDictator extends JavaPlugin {
     public static final String PLUGIN_ID = "voicechat_dictator";
     public static final Logger LOGGER = LogManager.getLogger(PLUGIN_ID);
 
+    private static VoicechatDictator instance;
+
     @Nullable
     private VoiceChatInteraction voicechatPlugin;
 
     @Override
     public void onEnable() {
         BukkitVoicechatService service = getServer().getServicesManager().load(BukkitVoicechatService.class);
+        instance = this;
         if (service != null) {
-            voicechatPlugin = new VoiceChatInteraction();
+            voicechatPlugin = new VoiceChatInteraction(this);
             service.registerPlugin(voicechatPlugin);
-            LOGGER.info("Successfully registered example plugin");
+            LOGGER.info("Successfully registered voice chat dictator plugin");
         } else {
-            LOGGER.info("Failed to register example plugin");
+            LOGGER.info("Failed to register voice chat dictator plugin");
         }
     }
 
