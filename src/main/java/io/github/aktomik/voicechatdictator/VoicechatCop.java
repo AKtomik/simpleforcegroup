@@ -61,17 +61,21 @@ public class VoicechatCop implements VoicechatPlugin {
         return serverApi != null;
     }
 
-    public void addPlayerToGroup(Player player, String groupName)
+    public Group getGroup(String groupName)
     {
         List<Group> groups = serverApi.getGroups().stream().filter(group -> Objects.equals(group.getName(), groupName)).toList();
-        assert groups.isEmpty();
-        Group group = groups.getFirst();
+        if (groups.isEmpty()) return null;
+        return groups.getFirst();
+    }
+
+    public void addPlayerToGroup(Player player, Group group)
+    {
         VoicechatConnection connection = serverApi.getConnectionOf(player.getUniqueId());
         assert connection != null;
         connection.setGroup(group);
     }
 
-    public void removePlayerGroup(org.bukkit.entity.Player player)
+    public void removePlayerGroup(Player player)
     {
         VoicechatConnection connection = serverApi.getConnectionOf(player.getUniqueId());
 		assert connection != null;
