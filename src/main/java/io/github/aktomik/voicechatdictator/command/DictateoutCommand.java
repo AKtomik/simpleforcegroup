@@ -9,24 +9,25 @@ import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.List;
 
-public class HiCommand extends BrigadierCommand {
+public class DictateoutCommand extends BrigadierCommand {
 
-	VoicechatCop chat;
+	VoicechatCop cop;
 	JavaPlugin plugin;
-	public HiCommand(JavaPlugin plugin, VoicechatCop voiceChatPlugin)
+	public DictateoutCommand(JavaPlugin plugin, VoicechatCop cop)
 	{
 		this.plugin = plugin;
-		chat = voiceChatPlugin;
+		this.cop = cop;
 	}
 
 	@Override
 	public String name() {
-		return "hi";
+		return "dictateout";
 	}
 
 	@Override
@@ -36,12 +37,12 @@ public class HiCommand extends BrigadierCommand {
 
 	@Override
 	public String description() {
-		return "say hi";
+		return "kicking out players from their voicechat group";
 	}
 
 	@Override
 	public List<String> aliases() {
-		return List.of();
+		return List.of("groupkick", "kickgroup");
 	}
 
 	@Override
@@ -53,11 +54,12 @@ public class HiCommand extends BrigadierCommand {
 
 	Command<CommandSourceStack> exe = (ctx) -> {
 		final List<Player> players = BrigadierToolbox.resolvePlayers(ctx);
+		final CommandSender sender = ctx.getSource().getSender();
 
 		for (Player player : players)
 		{
-			player.sendRichMessage("<yellow>hi <you>! <red>kicked out of your group.", Placeholder.parsed("you", player.getName()));
-			chat.removePlayerGroup(player);
+			sender.sendRichMessage("kicked out <target> from their group.", Placeholder.parsed("target", player.getName()));
+			cop.removePlayerGroup(player);
 		}
 
 		return Command.SINGLE_SUCCESS;
